@@ -2,14 +2,14 @@
 
 describe('alt-passaporte-acessos-usuario', function() {
   var _altPassaporteAcessosUsuario;
-  var assinanteCompleto = {};
+  var exemploAssinante = {};
 
   beforeEach(module('alt.passaporte-acessos-usuario'));
 
   beforeEach(inject(function($injector) {
     _altPassaporteAcessosUsuario = $injector.get('altPassaporteAcessosUsuario');
 
-    assinanteCompleto = {
+    exemploAssinante = {
       "administradorPassaporte": true,
       "identificacao": "36.462.778/0001-60",
       "produtos": [
@@ -18,8 +18,8 @@ describe('alt-passaporte-acessos-usuario', function() {
           "database": "koopon",
           "idAssinanteProdutoUsuario": 5921,
           "idDatabase": 5,
-          "chaveProduto": "60f1fe1f835b14a3d20ac0f046fac668",
-          "nome": "Koopon Empresa",
+          "chaveProduto": "CHAVE_1",
+          "nome": "Koopon1",
           "id": 15,
           "perfil": {
             "nome": "Koopon - Empresa - ADMIN",
@@ -61,6 +61,39 @@ describe('alt-passaporte-acessos-usuario', function() {
               "idExterno": 6,
               "id": 45,
               "tipoFuncionalidade": "ACEITAR_TAREFA"
+            }
+          ]
+        },
+        {
+          "schema": "_teste_dsn_nimbus",
+          "database": "koopon_1",
+          "idAssinanteProdutoUsuario": 8513,
+          "idDatabase": 15,
+          "chaveProduto": "CHAVE_2",
+          "nome": "Koopon2",
+          "id": 15,
+          "perfil": {
+            "nome": "Koopon - Empresa - ADMIN",
+            "id": 24
+          },
+          "funcionalidades": [
+            {
+              "idExterno": "44",
+              "nome": "Recusar Tarefa",
+              "id": 44,
+              "tipoFuncionalidade": "RECUSAR_TAREFA"
+            },
+            {
+              "idExterno": "45",
+              "nome": "Aceitar Tarefa",
+              "id": 45,
+              "tipoFuncionalidade": "ACEITAR_TAREFA"
+            },
+            {
+              "idExterno": "46",
+              "nome": "Delegar Perfil Administrador",
+              "id": 46,
+              "tipoFuncionalidade": "DELEGAR_PERFIL_ADMINISTRADOR"
             }
           ]
         }
@@ -203,31 +236,31 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
   })
 
-  describe('temAcesso', function() {
+  describe('temAcessoFuncionalidade', function() {
     it('deve dar erro, acessos não inicializados', function() {
       var _funcionalidade = "123";
 
       expect(function() {
-        _altPassaporteAcessosUsuario.temAcesso(_funcionalidade);
+        _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
       }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
     })
 
     it('deve dar erro, chave para procura de acesso não passada', function() {
       var _funcionalidade = undefined;
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
-        _altPassaporteAcessosUsuario.temAcesso(_funcionalidade);
+        _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
       }).toThrow(new TypeError('Funcionalidade não informada para verificação de acesso.'));
     })
 
     it('deve retornar false, chave não encontrada', function() {
       var _funcionalidade = 9999;
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
-      var _resultado = _altPassaporteAcessosUsuario.temAcesso(_funcionalidade);
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
 
       expect(_resultado).toBe(false);
     })
@@ -235,9 +268,69 @@ describe('alt-passaporte-acessos-usuario', function() {
     it('deve retornar true, chave encontrada', function() {
       var _funcionalidade = 6;
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
-      var _resultado = _altPassaporteAcessosUsuario.temAcesso(_funcionalidade);
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
+
+      expect(_resultado).toBe(true);
+    })
+
+    it('deve retornar true, chave encontrada no assinante final', function() {
+      var _funcionalidade = "46";
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
+
+      expect(_resultado).toBe(true);
+    })
+  })
+
+  describe('temAcessoProduto', function() {
+    it('deve dar erro, acessos não inicializados', function() {
+      var _chaveProduto = "123";
+
+      expect(function() {
+        _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
+      }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
+    })
+
+    it('deve dar erro, chave para procura de acesso não passada', function() {
+      var _chaveProduto = undefined;
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      expect(function() {
+        _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
+      }).toThrow(new TypeError('Chave do produto não informada para verificação de acesso.'));
+    })
+
+    it('deve retornar false, chave não encontrada', function() {
+      var _chaveProduto = "CHAVE_9999";
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
+
+      expect(_resultado).toBe(false);
+    })
+
+    it('deve retornar true, chave encontrada', function() {
+      var _chaveProduto = "CHAVE_1";
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
+
+      expect(_resultado).toBe(true);
+    })
+
+    it('deve retornar true, chave encontrada no assinante final', function() {
+      var _chaveProduto = "CHAVE_2";
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
 
       expect(_resultado).toBe(true);
     })
@@ -251,7 +344,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     it('deve dar erro, nada passado para a atualização', function() {
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza();
@@ -261,7 +354,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     it('deve dar erro, null passado para a atualização', function() {
       var _obj = null;
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -271,7 +364,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     it('deve dar erro, objeto vazio passado para a atualização', function() {
       var _obj = {};
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -283,7 +376,7 @@ describe('alt-passaporte-acessos-usuario', function() {
         a: true
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -296,7 +389,7 @@ describe('alt-passaporte-acessos-usuario', function() {
         produtos: []
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -311,7 +404,7 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -329,7 +422,7 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -353,7 +446,7 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -378,13 +471,13 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
-      expect(_altPassaporteAcessosUsuario.temAcesso(9999)).toBe(false);
+      expect(_altPassaporteAcessosUsuario.temAcessoFuncionalidade(9999)).toBe(false);
 
       _altPassaporteAcessosUsuario.atualiza(_obj);
 
-      expect(_altPassaporteAcessosUsuario.temAcesso(9999)).toBe(true);
+      expect(_altPassaporteAcessosUsuario.temAcessoFuncionalidade(9999)).toBe(true);
     })
 
     it('deve fazer a atualização corretamente e ter acesso a nova funcionalidade', function() {
@@ -405,7 +498,7 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(assinanteCompleto);
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
       _altPassaporteAcessosUsuario.atualiza(_obj);
 
       expect(_altPassaporteAcessosUsuario._assinante).toBe(_obj);

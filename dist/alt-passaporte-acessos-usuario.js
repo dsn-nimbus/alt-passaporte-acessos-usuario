@@ -26,15 +26,17 @@
           throw new TypeError('Parâmetro de inicialização deve conter um array de produtos.');
         }
 
-        if (!angular.isArray(obj.produtos[0].funcionalidades) || !obj.produtos[0].funcionalidades.length) {
-          throw new TypeError('Parâmetro de inicialização deve conter um array de funcionalidades dentro do produto.');
-        }
+        angular.forEach(obj.produtos, function(produto) {
+          if (!angular.isArray(produto.funcionalidades) || !produto.funcionalidades.length) {
+            throw new TypeError('Parâmetro de inicialização deve conter um array de funcionalidades dentro do produto.');
+          }
+        })
 
         this._assinante = obj;
         this._assinantePreenchidoInicializacao = true;
       }
 
-      this.temAcesso = function(funcionalidade) {
+      this.temAcessoFuncionalidade = function(funcionalidade) {
         if (!this._assinantePreenchido()) {
           throw new TypeError('Assinante não inicializado, utilize .inicializa(assinante).');
         }
@@ -43,8 +45,28 @@
           throw new TypeError('Funcionalidade não informada para verificação de acesso.');
         }
 
-        for (var i = 0, len = this._assinante.produtos[0].funcionalidades.length; i < len; i++) {
-          if (this._assinante.produtos[0].funcionalidades[i].idExterno === funcionalidade) {
+        for (var indiceProd = this._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
+          for (var indiceFuncionalidade = 0, len = this._assinante.produtos[indiceProd].funcionalidades.length; indiceFuncionalidade < len; indiceFuncionalidade++) {
+            if (this._assinante.produtos[indiceProd].funcionalidades[indiceFuncionalidade].idExterno === funcionalidade) {
+              return true;
+            }
+          }
+        }
+
+        return false;
+      }
+
+      this.temAcessoProduto = function(chaveProduto) {
+        if (!this._assinantePreenchido()) {
+          throw new TypeError('Assinante não inicializado, utilize .inicializa(assinante).');
+        }
+
+        if (!chaveProduto) {
+          throw new TypeError('Chave do produto não informada para verificação de acesso.');
+        }
+
+        for (var indiceProd = this._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
+          if (this._assinante.produtos[indiceProd].chaveProduto === chaveProduto) {
             return true;
           }
         }
@@ -65,9 +87,11 @@
           throw new TypeError('Parâmetro de atualização deve conter um array de produtos.');
         }
 
-        if (!angular.isArray(novoAssinante.produtos[0].funcionalidades) || !novoAssinante.produtos[0].funcionalidades.length) {
-          throw new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.');
-        }
+        angular.forEach(novoAssinante.produtos, function(produto) {
+          if (!angular.isArray(produto.funcionalidades) || !produto.funcionalidades.length) {
+            throw new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.');
+          }
+        })
 
         this._assinante = novoAssinante;
       }
