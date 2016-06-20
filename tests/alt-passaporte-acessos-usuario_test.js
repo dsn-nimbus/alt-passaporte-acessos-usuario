@@ -65,6 +65,12 @@ describe('alt-passaporte-acessos-usuario', function() {
           ]
         },
         {
+          "nome": "Módulo Koopon1",
+          "chaveProduto": "CHAVE_MODULO",
+          "isModulo": true,
+          "perfil": {}
+        },
+        {
           "schema": "_teste_dsn_nimbus",
           "database": "koopon_1",
           "idAssinanteProdutoUsuario": 8513,
@@ -175,6 +181,35 @@ describe('alt-passaporte-acessos-usuario', function() {
       }).toThrow(new TypeError('Parâmetro de inicialização deve conter um array de funcionalidades dentro do produto.'));
     })
 
+    it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo', function() {
+      var _obj = {
+        a: true,
+        produtos: [
+          {b: false, isModulo: true}
+        ]
+      };
+
+      expect(function() {
+        _altPassaporteAcessosUsuario.inicializa(_obj);
+      }).not.toThrow();
+    })
+
+    it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo - junto com outros produtos', function() {
+      var _obj = {
+        a: true,
+        produtos: [
+          {b: false, isModulo: true},
+          {b: true, funcionalidades: [
+            {idExterno: 'a', chaveProduto: 'b'}
+          ]}
+        ]
+      };
+
+      expect(function() {
+        _altPassaporteAcessosUsuario.inicializa(_obj);
+      }).not.toThrow();
+    })
+
     it('deve dar erro, objeto passado contém array de produtos, com funcionalidades, mas este último encontra-se vazio', function() {
       var _obj = {
         a: true,
@@ -226,6 +261,32 @@ describe('alt-passaporte-acessos-usuario', function() {
                 tipoFuncionalidade: "COMUM"
               }
             ]
+          }
+        ]
+      };
+
+      _altPassaporteAcessosUsuario.inicializa(_obj);
+
+      expect(_altPassaporteAcessosUsuario._assinante).toEqual(_obj);
+    })
+
+    it('deve preencher a propriedade de _assinante corretamente - produtos completos e módulos', function() {
+      var _obj = {
+        a: true,
+        produtos: [
+          {
+            b: false,
+            funcionalidades: [
+              {
+                nome: "Aceitar Procuração",
+                id: 153,
+                tipoFuncionalidade: "COMUM"
+              }
+            ]
+          },
+          {
+            b: true,
+            isModulo: true
           }
         ]
       };
@@ -325,8 +386,18 @@ describe('alt-passaporte-acessos-usuario', function() {
       expect(_resultado).toBe(true);
     })
 
-    it('deve retornar true, chave encontrada no assinante final', function() {
+    it('deve retornar true, chave encontrada no produto final', function() {
       var _chaveProduto = "CHAVE_2";
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
+
+      expect(_resultado).toBe(true);
+    })
+
+    it('deve retornar true, chave encontrada no produto que é um módulo', function() {
+      var _chaveProduto = "CHAVE_MODULO";
 
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -410,6 +481,38 @@ describe('alt-passaporte-acessos-usuario', function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
       }).toThrow(new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.'));
     })
+
+    it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo - apenas produto que é módulo', function() {
+      var _obj = {
+        a: true,
+        produtos: [
+          {b: false, isModulo: true}
+        ]
+      };
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      expect(function() {
+        _altPassaporteAcessosUsuario.atualiza(_obj);
+      }).not.toThrow();
+    })
+
+    it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo - módulos e outros produtos juntos', function() {
+      var _obj = {
+        a: true,
+        produtos: [
+          {b: false, isModulo: false, funcionalidades: [{idExterno: 'a', chaveProduto: 'b'}]},
+          {b: false, isModulo: true},
+          {b: false, isModulo: false, funcionalidades: [{idExterno: 'a', chaveProduto: 'b'}]}
+        ]
+      };
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      expect(function() {
+        _altPassaporteAcessosUsuario.atualiza(_obj);
+      }).not.toThrow();
+    });
 
     it('deve dar erro, objeto passado contém array de produtos, com funcionalidades, mas este último encontra-se vazio', function() {
       var _obj = {
