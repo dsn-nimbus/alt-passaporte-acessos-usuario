@@ -10,103 +10,194 @@ describe('alt-passaporte-acessos-usuario', function() {
     _altPassaporteAcessosUsuario = $injector.get('altPassaporteAcessosUsuario');
 
     exemploAssinante = {
+      "id": 2724,
+      "nome": "RAFAEL RODRIGUES GONÇALVES",
+      "idExterno": "597611",
+      "identificacao": "041.628.937-13",
       "administradorPassaporte": true,
-      "identificacao": "36.462.778/0001-60",
       "produtos": [
         {
-          "schema": "_900000",
-          "database": "koopon",
-          "idAssinanteProdutoUsuario": 5921,
-          "idDatabase": 5,
-          "chaveProduto": "CHAVE_1",
-          "nome": "Koopon1",
-          "id": 15,
-          "perfil": {
-            "nome": "Koopon - Empresa - ADMIN",
-            "id": 24
-          },
+          "id": 37,
+          "nome": "Koopon",
+          "chaveProduto": "CHAVE_PRODUTO_1",
+          "isModulo": false,
+          "idAssinanteProdutoUsuario": 11264,
+          "idDatabase": 274,
+          "database": "koopon_fly",
+          "schema": "_597611_37_10525b1acd67182af72e4a546d0181cc",
+          "perfis": [
+            {
+              "id": 58,
+              "nome": "Koopon - Admin"
+            }
+          ],
           "funcionalidades": [
             {
-              "nome": "Aceitar Procuração",
-              "idExterno": 1,
-              "id": 153,
-              "tipoFuncionalidade": "COMUM"
-            },
-            {
-              "nome": "Revogar Procuração",
-              "idExterno": 2,
-              "id": 154,
-              "tipoFuncionalidade": "COMUM"
-            },
-            {
-              "nome": "Listar Procurações",
-              "idExterno": 3,
-              "id": 152,
-              "tipoFuncionalidade": "COMUM"
+              "nome": "Revogar Acesso",
+              "idExterno": 1
             },
             {
               "nome": "Delegar Perfil Administrador",
-              "idExterno": 4,
-              "id": 46,
-              "tipoFuncionalidade": "DELEGAR_PERFIL_ADMINISTRADOR"
+              "idExterno": 2
             },
             {
               "nome": "Recusar Tarefa",
-              "idExterno": 5,
-              "id": 44,
-              "tipoFuncionalidade": "RECUSAR_TAREFA"
+              "idExterno": 3
             },
             {
               "nome": "Aceitar Tarefa",
-              "idExterno": 6,
-              "id": 45,
-              "tipoFuncionalidade": "ACEITAR_TAREFA"
+              "idExterno": 4
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Cliente",
+              "idExterno": 5
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Funcionário",
+              "idExterno": 6
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Fornecedor",
+              "idExterno": 7
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Sócio",
+              "idExterno": 8
+            },
+            {
+              "nome": "<<Koopon - Produto>> - Listar Produto",
+              "idExterno": 9
+            },
+            {
+              "nome": "<<Koopon - Produto>> - Listar Grupo",
+              "idExterno": 10
+            }
+          ],
+          "dependencias": [
+            {
+              "id": 34,
+              "nome": "Koopon - PDV",
+              "chaveProduto": "CHAVE_MODULO_1",
+              "isModulo": true
+            },
+            {
+              "id": 32,
+              "nome": "Koopon - Pessoa",
+              "chaveProduto": "CHAVE_MODULO_2",
+              "isModulo": true
+            },
+            {
+              "id": 33,
+              "nome": "Koopon - Produto",
+              "chaveProduto": "CHAVE_MODULO_3",
+              "isModulo": true
+            },
+            {
+              "id": 35,
+              "nome": "Koopon - Integração",
+              "chaveProduto": "CHAVE_MODULO_4",
+              "isModulo": true
+            },
+            {
+              "id": 36,
+              "nome": "Koopon - Criação de base",
+              "chaveProduto": "CHAVE_MODULO_5",
+              "isModulo": true
             }
           ]
         },
         {
-          "nome": "Módulo Koopon1",
-          "chaveProduto": "CHAVE_MODULO",
-          "isModulo": true,
-          "perfil": {}
-        },
-        {
-          "schema": "_teste_dsn_nimbus",
-          "database": "koopon_1",
-          "idAssinanteProdutoUsuario": 8513,
-          "idDatabase": 15,
-          "chaveProduto": "CHAVE_2",
-          "nome": "Koopon2",
-          "id": 15,
-          "perfil": {
-            "nome": "Koopon - Empresa - ADMIN",
-            "id": 24
-          },
+          "id": 37,
+          "nome": "Koopon",
+          "chaveProduto": "CHAVE_PRODUTO_2",
+          "isModulo": false,
+          "idAssinanteProdutoUsuario": 11264,
+          "idDatabase": 274,
+          "database": "koopon_fly",
+          "schema": "_597611_37_10525b1acd67182af72e4a546d0181cc",
+          "perfis": [
+            {
+              "id": 58,
+              "nome": "Koopon - Admin"
+            }
+          ],
           "funcionalidades": [
             {
-              "idExterno": "44",
-              "nome": "Recusar Tarefa",
-              "id": 44,
-              "tipoFuncionalidade": "RECUSAR_TAREFA"
+              "nome": "Revogar Acesso",
+              "idExterno": 1
             },
             {
-              "idExterno": "45",
-              "nome": "Aceitar Tarefa",
-              "id": 45,
-              "tipoFuncionalidade": "ACEITAR_TAREFA"
-            },
-            {
-              "idExterno": "46",
               "nome": "Delegar Perfil Administrador",
-              "id": 46,
-              "tipoFuncionalidade": "DELEGAR_PERFIL_ADMINISTRADOR"
+              "idExterno": 2
+            },
+            {
+              "nome": "Recusar Tarefa",
+              "idExterno": 3
+            },
+            {
+              "nome": "Aceitar Tarefa",
+              "idExterno": 4
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Cliente",
+              "idExterno": 5
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Funcionário",
+              "idExterno": 6
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Fornecedor",
+              "idExterno": 7
+            },
+            {
+              "nome": "<<Koopon - Pessoa>> - Listar Sócio",
+              "idExterno": 8
+            },
+            {
+              "nome": "<<Koopon - Produto>> - Listar Produto",
+              "idExterno": 9
+            },
+            {
+              "nome": "<<Koopon - Produto>> - Listar Grupo",
+              "idExterno": 10
+            }
+          ],
+          "dependencias": [
+            {
+              "id": 34,
+              "nome": "Koopon - PDV",
+              "chaveProduto": "CHAVE_MODULO_4",
+              "isModulo": true
+            },
+            {
+              "id": 32,
+              "nome": "Koopon - Pessoa",
+              "chaveProduto": "CHAVE_MODULO_5",
+              "isModulo": true
+            },
+            {
+              "id": 33,
+              "nome": "Koopon - Produto",
+              "chaveProduto": "CHAVE_MODULO_6",
+              "isModulo": true
+            },
+            {
+              "id": 35,
+              "nome": "Koopon - Integração",
+              "chaveProduto": "CHAVE_MODULO_7",
+              "isModulo": true
+            },
+            {
+              "id": 36,
+              "nome": "Koopon - Criação de base",
+              "chaveProduto": "CHAVE_MODULO_8",
+              "isModulo": true
             }
           ]
         }
-      ],
-      "idExterno": "900000",
-      "nome": "ALTERDATA TECNOLOGIA EM INFORMATICA LTDA",
-      "id": 2002
+
+      ]
     }
   }));
 
@@ -337,7 +428,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     it('deve retornar true, chave encontrada no assinante final', function() {
-      var _funcionalidade = "46";
+      var _funcionalidade = 10;
 
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -367,7 +458,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     it('deve retornar false, chave não encontrada', function() {
-      var _chaveProduto = "CHAVE_9999";
+      var _chaveProduto = "CHAVE_PRODUTO_9999";
 
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -377,7 +468,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     it('deve retornar true, chave encontrada', function() {
-      var _chaveProduto = "CHAVE_1";
+      var _chaveProduto = "CHAVE_PRODUTO_1";
 
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -387,7 +478,7 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     it('deve retornar true, chave encontrada no produto final', function() {
-      var _chaveProduto = "CHAVE_2";
+      var _chaveProduto = "CHAVE_PRODUTO_2";
 
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -396,8 +487,18 @@ describe('alt-passaporte-acessos-usuario', function() {
       expect(_resultado).toBe(true);
     })
 
+    it('deve retornar false, chave não encontrada no produto nem em um módulo', function() {
+      var _chaveProduto = "CHAVE_MODULO_999";
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
+
+      expect(_resultado).toBe(false);
+    })
+
     it('deve retornar true, chave encontrada no produto que é um módulo', function() {
-      var _chaveProduto = "CHAVE_MODULO";
+      var _chaveProduto = "CHAVE_MODULO_3";
 
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -481,38 +582,6 @@ describe('alt-passaporte-acessos-usuario', function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
       }).toThrow(new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.'));
     })
-
-    it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo - apenas produto que é módulo', function() {
-      var _obj = {
-        a: true,
-        produtos: [
-          {b: false, isModulo: true}
-        ]
-      };
-
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
-
-      expect(function() {
-        _altPassaporteAcessosUsuario.atualiza(_obj);
-      }).not.toThrow();
-    })
-
-    it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo - módulos e outros produtos juntos', function() {
-      var _obj = {
-        a: true,
-        produtos: [
-          {b: false, isModulo: false, funcionalidades: [{idExterno: 'a', chaveProduto: 'b'}]},
-          {b: false, isModulo: true},
-          {b: false, isModulo: false, funcionalidades: [{idExterno: 'a', chaveProduto: 'b'}]}
-        ]
-      };
-
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
-
-      expect(function() {
-        _altPassaporteAcessosUsuario.atualiza(_obj);
-      }).not.toThrow();
-    });
 
     it('deve dar erro, objeto passado contém array de produtos, com funcionalidades, mas este último encontra-se vazio', function() {
       var _obj = {

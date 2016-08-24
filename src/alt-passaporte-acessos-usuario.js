@@ -46,10 +46,6 @@
         }
 
         for (var indiceProd = this._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
-          if (this._assinante.produtos[indiceProd].isModulo) {
-            continue;
-          }
-
           for (var indiceFuncionalidade = 0, len = this._assinante.produtos[indiceProd].funcionalidades.length; indiceFuncionalidade < len; indiceFuncionalidade++) {
             if (this._assinante.produtos[indiceProd].funcionalidades[indiceFuncionalidade].idExterno === funcionalidade) {
               return true;
@@ -69,9 +65,15 @@
           throw new TypeError('Chave do produto não informada para verificação de acesso.');
         }
 
-        for (var indiceProd = this._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
-          if (this._assinante.produtos[indiceProd].chaveProduto === chaveProduto) {
+        for (var i = 0, _tamanhoProd = this._assinante.produtos.length; i < _tamanhoProd; i++) {
+          if (this._assinante.produtos[i].chaveProduto === chaveProduto) {
             return true;
+          }
+
+          for (var j = 0, _tamanhoDeps = this._assinante.produtos[i].dependencias.length; j < _tamanhoDeps; j++) {
+            if (this._assinante.produtos[i].dependencias[j].chaveProduto === chaveProduto) {
+              return true;
+            }
           }
         }
 
@@ -92,7 +94,7 @@
         }
 
         ng.forEach(novoAssinante.produtos, function(produto) {
-          if (!produto.isModulo && (!ng.isArray(produto.funcionalidades) || !produto.funcionalidades.length)) {
+          if (!ng.isArray(produto.funcionalidades) || !produto.funcionalidades.length) {
             throw new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.');
           }
         })

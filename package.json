@@ -1,9 +1,10 @@
 {
   "name": "alt-passaporte-acessos-usuario",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/alt-passaporte-acessos-usuario.min.js",
   "scripts": {
     "test": "gulp unit_test",
+    "build": "gulp build",
     "coverage": "gulp coverage"
   },
   "dependencies": {},
