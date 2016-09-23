@@ -3,6 +3,8 @@
 describe('alt-passaporte-acessos-usuario', function() {
   var _altPassaporteAcessosUsuario;
   var exemploAssinante = {};
+  var exemploAssinanteComFuncionalidadesVazias = {};
+  var exemploAssinanteSemFuncionalidades = {};
 
   beforeEach(module('alt.passaporte-acessos-usuario'));
 
@@ -198,6 +200,220 @@ describe('alt-passaporte-acessos-usuario', function() {
         }
 
       ]
+    };
+
+    exemploAssinanteComFuncionalidadesVazias = {
+      "id": 2724,
+      "nome": "RAFAEL RODRIGUES GONÇALVES",
+      "idExterno": "597611",
+      "identificacao": "041.628.937-13",
+      "administradorPassaporte": true,
+      "produtos": [
+        {
+          "id": 37,
+          "nome": "Koopon",
+          "chaveProduto": "CHAVE_PRODUTO_1",
+          "isModulo": false,
+          "idAssinanteProdutoUsuario": 11264,
+          "idDatabase": 274,
+          "database": "koopon_fly",
+          "schema": "_597611_37_10525b1acd67182af72e4a546d0181cc",
+          "perfis": [
+            {
+              "id": 58,
+              "nome": "Koopon - Admin"
+            }
+          ],
+          "funcionalidades": [],
+          "dependencias": [
+            {
+              "id": 34,
+              "nome": "Koopon - PDV",
+              "chaveProduto": "CHAVE_MODULO_1",
+              "isModulo": true
+            },
+            {
+              "id": 32,
+              "nome": "Koopon - Pessoa",
+              "chaveProduto": "CHAVE_MODULO_2",
+              "isModulo": true
+            },
+            {
+              "id": 33,
+              "nome": "Koopon - Produto",
+              "chaveProduto": "CHAVE_MODULO_3",
+              "isModulo": true
+            },
+            {
+              "id": 35,
+              "nome": "Koopon - Integração",
+              "chaveProduto": "CHAVE_MODULO_4",
+              "isModulo": true
+            },
+            {
+              "id": 36,
+              "nome": "Koopon - Criação de base",
+              "chaveProduto": "CHAVE_MODULO_5",
+              "isModulo": true
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "nome": "Koopon",
+          "chaveProduto": "CHAVE_PRODUTO_2",
+          "isModulo": false,
+          "idAssinanteProdutoUsuario": 11264,
+          "idDatabase": 274,
+          "database": "koopon_fly",
+          "schema": "_597611_37_10525b1acd67182af72e4a546d0181cc",
+          "perfis": [
+            {
+              "id": 58,
+              "nome": "Koopon - Admin"
+            }
+          ],
+          "funcionalidades": [],
+          "dependencias": [
+            {
+              "id": 34,
+              "nome": "Koopon - PDV",
+              "chaveProduto": "CHAVE_MODULO_4",
+              "isModulo": true
+            },
+            {
+              "id": 32,
+              "nome": "Koopon - Pessoa",
+              "chaveProduto": "CHAVE_MODULO_5",
+              "isModulo": true
+            },
+            {
+              "id": 33,
+              "nome": "Koopon - Produto",
+              "chaveProduto": "CHAVE_MODULO_6",
+              "isModulo": true
+            },
+            {
+              "id": 35,
+              "nome": "Koopon - Integração",
+              "chaveProduto": "CHAVE_MODULO_7",
+              "isModulo": true
+            },
+            {
+              "id": 36,
+              "nome": "Koopon - Criação de base",
+              "chaveProduto": "CHAVE_MODULO_8",
+              "isModulo": true
+            }
+          ]
+        }
+      ]
+    }
+
+    exemploAssinanteSemFuncionalidades = {
+      "id": 2724,
+      "nome": "RAFAEL RODRIGUES GONÇALVES",
+      "idExterno": "597611",
+      "identificacao": "041.628.937-13",
+      "administradorPassaporte": true,
+      "produtos": [
+        {
+          "id": 37,
+          "nome": "Koopon",
+          "chaveProduto": "CHAVE_PRODUTO_1",
+          "isModulo": false,
+          "idAssinanteProdutoUsuario": 11264,
+          "idDatabase": 274,
+          "database": "koopon_fly",
+          "schema": "_597611_37_10525b1acd67182af72e4a546d0181cc",
+          "perfis": [
+            {
+              "id": 58,
+              "nome": "Koopon - Admin"
+            }
+          ],
+          "dependencias": [
+            {
+              "id": 34,
+              "nome": "Koopon - PDV",
+              "chaveProduto": "CHAVE_MODULO_1",
+              "isModulo": true
+            },
+            {
+              "id": 32,
+              "nome": "Koopon - Pessoa",
+              "chaveProduto": "CHAVE_MODULO_2",
+              "isModulo": true
+            },
+            {
+              "id": 33,
+              "nome": "Koopon - Produto",
+              "chaveProduto": "CHAVE_MODULO_3",
+              "isModulo": true
+            },
+            {
+              "id": 35,
+              "nome": "Koopon - Integração",
+              "chaveProduto": "CHAVE_MODULO_4",
+              "isModulo": true
+            },
+            {
+              "id": 36,
+              "nome": "Koopon - Criação de base",
+              "chaveProduto": "CHAVE_MODULO_5",
+              "isModulo": true
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "nome": "Koopon",
+          "chaveProduto": "CHAVE_PRODUTO_2",
+          "isModulo": false,
+          "idAssinanteProdutoUsuario": 11264,
+          "idDatabase": 274,
+          "database": "koopon_fly",
+          "schema": "_597611_37_10525b1acd67182af72e4a546d0181cc",
+          "perfis": [
+            {
+              "id": 58,
+              "nome": "Koopon - Admin"
+            }
+          ],
+          "dependencias": [
+            {
+              "id": 34,
+              "nome": "Koopon - PDV",
+              "chaveProduto": "CHAVE_MODULO_4",
+              "isModulo": true
+            },
+            {
+              "id": 32,
+              "nome": "Koopon - Pessoa",
+              "chaveProduto": "CHAVE_MODULO_5",
+              "isModulo": true
+            },
+            {
+              "id": 33,
+              "nome": "Koopon - Produto",
+              "chaveProduto": "CHAVE_MODULO_6",
+              "isModulo": true
+            },
+            {
+              "id": 35,
+              "nome": "Koopon - Integração",
+              "chaveProduto": "CHAVE_MODULO_7",
+              "isModulo": true
+            },
+            {
+              "id": 36,
+              "nome": "Koopon - Criação de base",
+              "chaveProduto": "CHAVE_MODULO_8",
+              "isModulo": true
+            }
+          ]
+        }
+      ]
     }
   }));
 
@@ -259,7 +475,7 @@ describe('alt-passaporte-acessos-usuario', function() {
       }).toThrow(new TypeError('Parâmetro de inicialização deve conter um array de produtos.'));
     })
 
-    it('deve dar erro, objeto passado contém array de produtos, mas sem funcionalidades', function() {
+    it('NÃO deve dar erro, objeto passado contém array de produtos, mas sem funcionalidades', function() {
       var _obj = {
         a: true,
         produtos: [
@@ -269,7 +485,9 @@ describe('alt-passaporte-acessos-usuario', function() {
 
       expect(function() {
         _altPassaporteAcessosUsuario.inicializa(_obj);
-      }).toThrow(new TypeError('Parâmetro de inicialização deve conter um array de funcionalidades dentro do produto.'));
+      }).not.toThrow();
+
+      expect(_altPassaporteAcessosUsuario._assinante).toEqual(_obj);
     })
 
     it('NÃO deve dar erro, objeto passado contém array de produtos, sem funcionalidades, mas é um módulo', function() {
@@ -301,7 +519,7 @@ describe('alt-passaporte-acessos-usuario', function() {
       }).not.toThrow();
     })
 
-    it('deve dar erro, objeto passado contém array de produtos, com funcionalidades, mas este último encontra-se vazio', function() {
+    it('NÃO deve dar erro, objeto passado contém array de produtos, com funcionalidades sendo um array vazio', function() {
       var _obj = {
         a: true,
         produtos: [
@@ -314,7 +532,9 @@ describe('alt-passaporte-acessos-usuario', function() {
 
       expect(function() {
         _altPassaporteAcessosUsuario.inicializa(_obj);
-      }).toThrow(new TypeError('Parâmetro de inicialização deve conter um array de funcionalidades dentro do produto.'));
+      }).not.toThrow();
+
+      expect(_altPassaporteAcessosUsuario._assinante).toEqual(_obj);
     })
 
     it('não deve dar erro, parâmetro passados corretamente', function() {
@@ -417,6 +637,26 @@ describe('alt-passaporte-acessos-usuario', function() {
       expect(_resultado).toBe(false);
     })
 
+    it('deve retornar false nenhum dos produtos tem funcionalidades - propriedades não existem', function() {
+      var _funcionalidade = 9999;
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinanteSemFuncionalidades);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
+
+      expect(_resultado).toBe(false);
+    })
+
+    it('deve retornar false nenhum dos produtos tem funcionalidades - arrays vazios', function() {
+      var _funcionalidade = 9999;
+
+      _altPassaporteAcessosUsuario.inicializa(exemploAssinanteComFuncionalidadesVazias);
+
+      var _resultado = _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
+
+      expect(_resultado).toBe(false);
+    })
+
     it('deve retornar true, chave encontrada', function() {
       var _funcionalidade = 6;
 
@@ -509,12 +749,6 @@ describe('alt-passaporte-acessos-usuario', function() {
   })
 
   describe('atualiza', function() {
-    it('deve dar erro, assinante não inicializado', function() {
-      expect(function() {
-        _altPassaporteAcessosUsuario.atualiza();
-      }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
-    })
-
     it('deve dar erro, nada passado para a atualização', function() {
       _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
@@ -526,8 +760,6 @@ describe('alt-passaporte-acessos-usuario', function() {
     it('deve dar erro, null passado para a atualização', function() {
       var _obj = null;
 
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
-
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
       }).toThrow(new TypeError('Parâmetro de atualização deve ser um objeto.'));
@@ -535,8 +767,6 @@ describe('alt-passaporte-acessos-usuario', function() {
 
     it('deve dar erro, objeto vazio passado para a atualização', function() {
       var _obj = {};
-
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -547,8 +777,6 @@ describe('alt-passaporte-acessos-usuario', function() {
       var _obj = {
         a: true
       };
-
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -561,14 +789,12 @@ describe('alt-passaporte-acessos-usuario', function() {
         produtos: []
       };
 
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
-
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
       }).toThrow(new TypeError('Parâmetro de atualização deve conter um array de produtos.'));
     })
 
-    it('deve dar erro, objeto passado contém array de produtos, mas sem funcionalidades', function() {
+    it('NÃO deve dar erro, objeto passado contém array de produtos, mas sem funcionalidades', function() {
       var _obj = {
         a: true,
         produtos: [
@@ -576,14 +802,14 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
-
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
-      }).toThrow(new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.'));
+      }).not.toThrow();
+
+      expect(_altPassaporteAcessosUsuario._assinante).toBe(_obj);
     })
 
-    it('deve dar erro, objeto passado contém array de produtos, com funcionalidades, mas este último encontra-se vazio', function() {
+    it('NÃO deve dar erro, objeto passado contém array de produtos, com funcionalidades sendo um array vazio', function() {
       var _obj = {
         a: true,
         produtos: [
@@ -594,11 +820,11 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
-
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
-      }).toThrow(new TypeError('Parâmetro de atualização deve conter um array de funcionalidades dentro do produto.'));
+      }).not.toThrow();
+
+      expect(_altPassaporteAcessosUsuario._assinante).toBe(_obj);
     })
 
     it('não deve dar erro, parâmetro passados corretamente', function() {
@@ -617,8 +843,6 @@ describe('alt-passaporte-acessos-usuario', function() {
           }
         ]
       };
-
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
 
       expect(function() {
         _altPassaporteAcessosUsuario.atualiza(_obj);
@@ -670,7 +894,6 @@ describe('alt-passaporte-acessos-usuario', function() {
         ]
       };
 
-      _altPassaporteAcessosUsuario.inicializa(exemploAssinante);
       _altPassaporteAcessosUsuario.atualiza(_obj);
 
       expect(_altPassaporteAcessosUsuario._assinante).toBe(_obj);
