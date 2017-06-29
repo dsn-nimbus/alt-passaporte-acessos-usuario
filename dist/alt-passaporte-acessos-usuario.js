@@ -8,16 +8,17 @@
   // O primeiro binding deve ser reaproveitado em todos os locais do sistemas que necessitarem de funcionalidades.
 
   ng.module('alt.passaporte-acessos-usuario', [])
-    .service('altPassaporteAcessosUsuario', [function AltPassaporteAcessosUsuario() {
-      // _assinante não deve ser acessado do lado de fora
-      this._assinante = null;
-      this._assinantePreenchidoInicializacao = false;
+    .provider('altPassaporteAcessosUsuario', [function() {
+      var self = this;
 
-      this._assinantePreenchido = function() {
-        return !!this._assinante;
+      self._assinante = null;
+      self._assinantePreenchidoInicializacao = false;
+
+      self._assinantePreenchido = function() {
+        return !!self._assinante;
       };
 
-      this.inicializa = function(obj) {
+      self.inicializa = function(obj) {
         if (!ng.isObject(obj) || !Object.keys(obj).length) {
           throw new TypeError('Parâmetro de inicialização deve ser um objeto.');
         }
@@ -26,11 +27,11 @@
           throw new TypeError('Parâmetro de inicialização deve conter um array de produtos.');
         }
 
-        this._assinante = obj;
+        self._assinante = obj;
       };
 
-      this.temAcessoFuncionalidade = function(funcionalidade) {
-        if (!this._assinantePreenchido()) {
+      self.temAcessoFuncionalidade = function(funcionalidade) {
+        if (!self._assinantePreenchido()) {
           throw new TypeError('Assinante não inicializado, utilize .inicializa(assinante).');
         }
 
@@ -38,46 +39,46 @@
           throw new TypeError('Funcionalidade não informada para verificação de acesso.');
         }
 
-        for (var indiceProd = this._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
-          if (!this._assinante.produtos[indiceProd].funcionalidades) {
+        for (var indiceProd = self._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
+          if (!self._assinante.produtos[indiceProd].funcionalidades) {
             continue;
           }
 
-          for (var indiceFuncionalidade = 0, len = this._assinante.produtos[indiceProd].funcionalidades.length; indiceFuncionalidade < len; indiceFuncionalidade++) {
-            if (this._assinante.produtos[indiceProd].funcionalidades[indiceFuncionalidade].idExterno === funcionalidade) {
+          for (var indiceFuncionalidade = 0, len = self._assinante.produtos[indiceProd].funcionalidades.length; indiceFuncionalidade < len; indiceFuncionalidade++) {
+            if (self._assinante.produtos[indiceProd].funcionalidades[indiceFuncionalidade].idExterno === funcionalidade) {
               return true;
             }
           }
         }
 
         return false;
-      }
+      };
 
-      this.temAcessoProduto = function(chaveProduto) {
-        if (!this._assinantePreenchido()) {
+      self.temAcessoProduto = function(chaveProduto) {
+        if (!self._assinantePreenchido()) {
           throw new TypeError('Assinante não inicializado, utilize .inicializa(assinante).');
         }
 
         if (!chaveProduto) {
           throw new TypeError('Chave do produto não informada para verificação de acesso.');
         }
- 
-        for (var i = 0, _tamanhoProd = this._assinante.produtos.length; i < _tamanhoProd; i++) {
-          if (this._assinante.produtos[i].chaveProduto === chaveProduto) {
+
+        for (var i = 0, _tamanhoProd = self._assinante.produtos.length; i < _tamanhoProd; i++) {
+          if (self._assinante.produtos[i].chaveProduto === chaveProduto) {
             return true;
           }
 
-          for (var j = 0, _tamanhoDeps = this._assinante.produtos[i].dependencias.length; j < _tamanhoDeps; j++) {
-            if (this._assinante.produtos[i].dependencias[j].chaveProduto === chaveProduto) {
+          for (var j = 0, _tamanhoDeps = self._assinante.produtos[i].dependencias.length; j < _tamanhoDeps; j++) {
+            if (self._assinante.produtos[i].dependencias[j].chaveProduto === chaveProduto) {
               return true;
             }
           }
         }
 
         return false;
-      }
+      };
 
-      this.atualiza = function(novoAssinante) {        
+      self.atualiza = function(novoAssinante) {
         if (!ng.isObject(novoAssinante) || !Object.keys(novoAssinante).length) {
           throw new TypeError('Parâmetro de atualização deve ser um objeto.');
         }
@@ -86,7 +87,11 @@
           throw new TypeError('Parâmetro de atualização deve conter um array de produtos.');
         }
 
-        this._assinante = novoAssinante;
-      }
+        self._assinante = novoAssinante;
+      };
+
+      self.$get = [function() {
+        return self;
+      }];
     }]);
 }(window.angular));
