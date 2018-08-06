@@ -12,8 +12,7 @@
       var self = this;
 
       self._assinante = null;
-      self._assinantePreenchidoInicializacao = false;
-
+      
       self._assinantePreenchido = function() {
         return !!self._assinante;
       };
@@ -30,9 +29,21 @@
         self._assinante = obj;
       };
 
+      self.atualiza = function(novoAssinante) {
+        if (!ng.isObject(novoAssinante) || !Object.keys(novoAssinante).length) {
+          throw new TypeError('Parâmetro de atualização deve ser um objeto.');
+        }
+
+        if (!ng.isArray(novoAssinante.produtos) || !novoAssinante.produtos.length) {
+          throw new TypeError('Parâmetro de atualização deve conter um array de produtos.');
+        }
+
+        self._assinante = novoAssinante;
+      };
+
       self.temAcessoFuncionalidade = function(funcionalidade) {
         if (!self._assinantePreenchido()) {
-          throw new TypeError('Assinante não inicializado, utilize .inicializa(assinante).');
+          return;
         }
 
         if (!funcionalidade) {
@@ -56,7 +67,7 @@
 
       self.temAcessoProduto = function(chaveProduto) {
         if (!self._assinantePreenchido()) {
-          throw new TypeError('Assinante não inicializado, utilize .inicializa(assinante).');
+          return;
         }
 
         if (!chaveProduto) {
@@ -76,18 +87,6 @@
         }
 
         return false;
-      };
-
-      self.atualiza = function(novoAssinante) {
-        if (!ng.isObject(novoAssinante) || !Object.keys(novoAssinante).length) {
-          throw new TypeError('Parâmetro de atualização deve ser um objeto.');
-        }
-
-        if (!ng.isArray(novoAssinante.produtos) || !novoAssinante.produtos.length) {
-          throw new TypeError('Parâmetro de atualização deve conter um array de produtos.');
-        }
-
-        self._assinante = novoAssinante;
       };
 
       self.$get = [function() {

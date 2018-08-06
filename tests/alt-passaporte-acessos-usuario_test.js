@@ -432,10 +432,6 @@ describe('alt-passaporte-acessos-usuario', function() {
       it('deve ter _assinante como null', function() {
         expect(_altPassaporteAcessosUsuarioProvider._assinante).toEqual(null);
       });
-
-      it('deve ter _assinantePreenchidoInicializacao como false', function() {
-        expect(_altPassaporteAcessosUsuarioProvider._assinantePreenchidoInicializacao).toBe(false);
-      });
     })
 
     describe('inicializa', function() {
@@ -616,12 +612,12 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     describe('temAcessoFuncionalidade', function() {
-      it('deve dar erro, acessos não inicializados', function() {
+      it('NÃO deve dar erro, acessos não inicializados', function() {
         var _funcionalidade = "123";
 
         expect(function() {
           _altPassaporteAcessosUsuarioProvider.temAcessoFuncionalidade(_funcionalidade);
-        }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
+        }).not.toThrow();
       })
 
       it('deve dar erro, chave para procura de acesso não passada', function() {
@@ -686,12 +682,12 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     describe('temAcessoProduto', function() {
-      it('deve dar erro, acessos não inicializados', function() {
+      it('NÃO deve dar erro, acessos não inicializados', function() {
         var _chaveProduto = "123";
 
         expect(function() {
           _altPassaporteAcessosUsuarioProvider.temAcessoProduto(_chaveProduto);
-        }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
+        }).not.toThrow();
       })
 
       it('deve dar erro, chave para procura de acesso não passada', function() {
@@ -917,10 +913,6 @@ describe('alt-passaporte-acessos-usuario', function() {
       it('deve ter _assinante como null', function() {
         expect(_altPassaporteAcessosUsuario._assinante).toEqual(null);
       });
-
-      it('deve ter _assinantePreenchidoInicializacao como false', function() {
-        expect(_altPassaporteAcessosUsuario._assinantePreenchidoInicializacao).toBe(false);
-      });
     })
 
     describe('inicializa', function() {
@@ -1101,12 +1093,12 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     describe('temAcessoFuncionalidade', function() {
-      it('deve dar erro, acessos não inicializados', function() {
+      it('NÃO deve dar erro, acessos não inicializados', function() {
         var _funcionalidade = "123";
 
         expect(function() {
           _altPassaporteAcessosUsuario.temAcessoFuncionalidade(_funcionalidade);
-        }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
+        }).not.toThrow();
       })
 
       it('deve dar erro, chave para procura de acesso não passada', function() {
@@ -1171,12 +1163,12 @@ describe('alt-passaporte-acessos-usuario', function() {
     })
 
     describe('temAcessoProduto', function() {
-      it('deve dar erro, acessos não inicializados', function() {
+      it('NÃO deve dar erro, acessos não inicializados', function() {
         var _chaveProduto = "123";
 
         expect(function() {
           _altPassaporteAcessosUsuario.temAcessoProduto(_chaveProduto);
-        }).toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
+        }).not.toThrow(new TypeError('Assinante não inicializado, utilize .inicializa(assinante).'));
       })
 
       it('deve dar erro, chave para procura de acesso não passada', function() {
