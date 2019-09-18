@@ -51,12 +51,13 @@
         }
 
         for (var indiceProd = self._assinante.produtos.length - 1; indiceProd >= 0; indiceProd--) {
-          if (!self._assinante.produtos[indiceProd].funcionalidades) {
+          var funcionalidades = self._assinante.produtos[indiceProd].funcionalidades;
+          if (!funcionalidades) {
             continue;
           }
 
-          for (var indiceFuncionalidade = 0, len = self._assinante.produtos[indiceProd].funcionalidades.length; indiceFuncionalidade < len; indiceFuncionalidade++) {
-            if (self._assinante.produtos[indiceProd].funcionalidades[indiceFuncionalidade].idExterno === funcionalidade) {
+          for (var indiceFuncionalidade = 0, len = funcionalidades.length; indiceFuncionalidade < len; indiceFuncionalidade++) {
+            if (funcionalidades[indiceFuncionalidade].idExterno === funcionalidade) {
               return true;
             }
           }
@@ -74,13 +75,15 @@
           throw new TypeError('Chave do produto não informada para verificação de acesso.');
         }
 
-        for (var i = 0, _tamanhoProd = self._assinante.produtos.length; i < _tamanhoProd; i++) {
-          if (self._assinante.produtos[i].chaveProduto === chaveProduto) {
+        for (var i = 0; i < self._assinante.produtos.length; i++) {
+          var produto = self._assinante.produtos[i];
+          if (produto.chaveProduto === chaveProduto && !produto.isCancelado) {
             return true;
           }
 
-          for (var j = 0, _tamanhoDeps = self._assinante.produtos[i].dependencias.length; j < _tamanhoDeps; j++) {
-            if (self._assinante.produtos[i].dependencias[j].chaveProduto === chaveProduto) {
+          for (var j = 0; j < self._assinante.produtos[i].dependencias.length; j++) {
+            var dependencia = self._assinante.produtos[i].dependencias[j];
+            if (dependencia.chaveProduto === chaveProduto && !dependencia.isCancelado) {
               return true;
             }
           }
